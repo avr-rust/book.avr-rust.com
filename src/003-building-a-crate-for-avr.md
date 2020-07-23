@@ -26,7 +26,9 @@ Notes:
     target should be avoided in virtually all real-life usecases[CITATION NEEDED]. The `avr-unknown-unknown` target is equivalent to the AVR-GCC default, partially-microcontroller-independent mode where the lowest common denominator - the `avr2` family - is targeted.
   * `--release`  is not strictly required - debug mode should be as correct as release mode - however, **debug mode generates SLOW CODE, especially on AVR**. Release mode is much better.
 
-An in-context example of compiling a crate is given for the LED blinking example in [3.2. Example - Building the `blink` program for AVR](./003.2-example-building-blink.md).
+**Example**: An in-context example of compiling a crate is given for the LED blinking example in [3.2. Example - Building the `blink` program for AVR](./003.2-example-building-blink.md).
+
+### Targeting a different microcontroller model
 
 Other models of AVR can be targeted by simply modifying the `cpu` field inside the target specification JSON. Each desired target microcontroller
 variant requires its own target specification JSON file differing only by the `cpu` field. You will find many of the existing AVR projects
