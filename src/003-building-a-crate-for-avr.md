@@ -32,5 +32,5 @@ Notes:
 
 Other models of AVR can be targeted by simply modifying the `cpu` field inside the target specification JSON. Each desired target microcontroller
 variant requires its own target specification JSON file differing only by the `cpu` field. You will find many of the existing AVR projects
-provide an-tree target specification JSON file only for the popular `atmega328p, so you will in general need to duplicate the file and edit the `cpu`
+provide an-tree target specification JSON file only for the popular `atmega328p`, so you will in general need to duplicate the file and edit the `cpu`
 to get a crate compiling on a non-atmega328p microcontroler.
