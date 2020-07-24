@@ -1,12 +1,14 @@
 # 2. Installing the compiler
 
-Two pieces of software must be installed to use Rust with AVR support
+A few pieces of software must be installed to use Rust with AVR support
 
   * A Rust compiler with AVR support enabled
   * The source code of the compiler
     * This is required as `libcore` must be compiled lazily as AVRs are
     not generally ABI compatible with each other so the core library must be
     explicitly compiled for the AVR device that is being targeted at compile time.
+
+**NOTE**: Make sure to also install the [required third party tools](./002.1-installing-required-third-party-tools.md). This, importantly, **includes the linker**.
 
 ## Installing via Rustup (recommended)
 
