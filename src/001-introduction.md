@@ -1,6 +1,6 @@
 # 1. Introduction
 
-[AVR](https://en.wikipedia.org/wiki/Atmel_AVR) is a type of low-frequency (sub-20Hz in general) 8-bit microcontroller developed by Atmel and owned by Microchip.
+[AVR](https://en.wikipedia.org/wiki/Atmel_AVR) is a type of low-frequency (sub-20MHz in general) 8-bit microcontroller developed by Atmel and owned by Microchip.
 
 The AVR-Rust project aims to add support to the [Rust](https://www.rust-lang.org/) ecosystem so that executables can be generated for AVR, taking
 advantage of Rust's safety guarantees and ergonomics.
