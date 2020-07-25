@@ -17,3 +17,4 @@ The source code of this book can be [found on GitHub](https://github.com/avr-rus
   * [Known compiler issue list](https://github.com/rust-lang/rust/labels/O-AVR)
   * [Known compiler issue list (legacy, read only)](https://github.com/avr-rust/rust/issues)
   * [awesome-avr-rust - a publicly curated list of AVR crates and projects](https://github.com/avr-rust/awesome-avr-rust)
+  * [New executable template repository `avr-rust/template-bin`](https://github.com/avr-rust/template-bin)
