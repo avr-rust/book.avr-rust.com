@@ -27,7 +27,7 @@ jobs:
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.5.7
-        if: github.event.push
+        if: github.event_name == 'push'
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
