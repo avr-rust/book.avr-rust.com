@@ -9,3 +9,5 @@ Flashing a Rust ELF file is no different to flashing a regular AVR-GCC C/C++ gen
 * [LadyADA AVRDUDE Tutorial](http://ladyada.net/learn/avr/avrdude.html)
 
 Better instructions, including an example showing the flashing of the LED blink program to an Arduino UNO, will be added to this guide in the future.
+
+Test deploy: foo bar
