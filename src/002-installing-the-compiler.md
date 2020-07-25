@@ -20,7 +20,7 @@ is sufficient to install the official Rust `nightly` compiler, as well as the `r
 Then install the `nightly` and `rust-src` components by running this in a terminal:
 
 ```
-$ rustup component add nightly rust-src
+$ rustup component add rust-src --toolchain nightly
 ```
 
 Installation complete. You can proceed to the next part [3. Building a crate for AVR](./003-building-a-crate-for-avr.md).
