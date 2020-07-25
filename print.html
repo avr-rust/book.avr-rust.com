@@ -213,20 +213,22 @@ lowering parallelism flags (<code>-j N</code>, etc) to reduce memory pressure.</
 <li>avr-gcc (only used as a linker frontend)</li>
 <li>avr-binutils (for linker support)</li>
 <li>avr-libc (for device-specific runtime libraries)</li>
+<li>avrdude (for flashing a real AVR chip)</li>
 </ul>
 <p>These should be installed by the operating system package manager.</p>
 <h2><a class="header" href="#arch-linux" id="arch-linux">Arch Linux</a></h2>
 <p>To install all required dependencies under Arch Linux, run</p>
-<pre><code class="language-bash">sudo pacman -S avr-gcc avr-libc
+<pre><code class="language-bash">sudo pacman -S avr-gcc avr-libc avrdude
 </code></pre>
 <h2><a class="header" href="#ubuntu" id="ubuntu">Ubuntu</a></h2>
 <p>To install all required dependencies under Ubuntu Linux, run</p>
-<pre><code class="language-bash">sudo apt-get install binutils gcc-avr avr-libc
+<pre><code class="language-bash">sudo apt-get install binutils gcc-avr avr-libc avrdude
 </code></pre>
 <h2><a class="header" href="#macos" id="macos">macOS</a></h2>
 <p>Set up the <a href="https://github.com/osx-cross/homebrew-avr">homebrew-avr</a> tap, then install the packages:</p>
-<pre><code class="language-bash">brew install avr-binutils avr-gcc
+<pre><code class="language-bash">brew install avr-binutils avr-gcc avrdude
 </code></pre>
+<p>Note that <code>avrdude</code> may be installed without the homebrew-avr tap.</p>
 <h1><a class="header" href="#3-building-a-crate-for-avr" id="3-building-a-crate-for-avr">3. Building a crate for AVR</a></h1>
 <p>After setting up the compiler, you may use it to generate assembly or machine code targeting a specific AVR microcontroller model.</p>
 <h2><a class="header" href="#make-sure-you-use-the-nightly-version-of-rust-not-the-default-stable-channel" id="make-sure-you-use-the-nightly-version-of-rust-not-the-default-stable-channel">Make sure you use the nightly version of Rust, not the default stable channel</a></h2>
@@ -295,7 +297,24 @@ target/avr-atmega328p/release/blink.elf: ELF 32-bit LSB executable, Atmel AVR 8-
 <li><a href="https://www.nongnu.org/avrdude/">AVRDUDE Project Homepage</a></li>
 <li><a href="http://ladyada.net/learn/avr/avrdude.html">LadyADA AVRDUDE Tutorial</a></li>
 </ul>
-<p>Better instructions, including an example showing the flashing of the LED blink program to an Arduino UNO, will be added to this guide in the future.</p>
+<h2><a class="header" href="#arduino-uno" id="arduino-uno">Arduino Uno</a></h2>
+<p>Connect your Arduino Uno to your computer, and use <code>avrdude</code> to flash your crate. The example below uses the output from <a href="./003.2-example-building-blink.html">the <code>blink</code> example</a>.</p>
+<pre><code class="language-bash">avrdude -patmega328p -carduino -P[PORT] -b115200 -D -Uflash:w:target/avr-atmega328p/release/blink.elf:e
+</code></pre>
+<p>where</p>
+<ul>
+<li><code>-patmega328p</code> is the AVR part number</li>
+<li><code>-carduino</code> is the programmer</li>
+<li><code>-P[PORT]</code> is the serial port of your connected Arduino
+<ul>
+<li>On Linux &amp; macOS, replace <code>[PORT]</code> with your Arduino's serial port (like <code>/dev/ttyUSB0</code>)</li>
+</ul>
+</li>
+<li><code>-b115200</code> is the baud rate</li>
+<li><code>-D</code> disables flash auto-erase</li>
+<li><code>-Uflash:w:target/avr-atmega328p/release/blink.elf:e</code> writes the <code>blink.elf</code> program to the Arduino's flash memory</li>
+</ul>
+<p>For more debugging information, run <code>avrdude</code> with one or more <code>-v</code> flags.</p>
 
                     </main>
 

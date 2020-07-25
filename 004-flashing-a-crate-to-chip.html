@@ -162,7 +162,24 @@
 <li><a href="https://www.nongnu.org/avrdude/">AVRDUDE Project Homepage</a></li>
 <li><a href="http://ladyada.net/learn/avr/avrdude.html">LadyADA AVRDUDE Tutorial</a></li>
 </ul>
-<p>Better instructions, including an example showing the flashing of the LED blink program to an Arduino UNO, will be added to this guide in the future.</p>
+<h2><a class="header" href="#arduino-uno" id="arduino-uno">Arduino Uno</a></h2>
+<p>Connect your Arduino Uno to your computer, and use <code>avrdude</code> to flash your crate. The example below uses the output from <a href="./003.2-example-building-blink.html">the <code>blink</code> example</a>.</p>
+<pre><code class="language-bash">avrdude -patmega328p -carduino -P[PORT] -b115200 -D -Uflash:w:target/avr-atmega328p/release/blink.elf:e
+</code></pre>
+<p>where</p>
+<ul>
+<li><code>-patmega328p</code> is the AVR part number</li>
+<li><code>-carduino</code> is the programmer</li>
+<li><code>-P[PORT]</code> is the serial port of your connected Arduino
+<ul>
+<li>On Linux &amp; macOS, replace <code>[PORT]</code> with your Arduino's serial port (like <code>/dev/ttyUSB0</code>)</li>
+</ul>
+</li>
+<li><code>-b115200</code> is the baud rate</li>
+<li><code>-D</code> disables flash auto-erase</li>
+<li><code>-Uflash:w:target/avr-atmega328p/release/blink.elf:e</code> writes the <code>blink.elf</code> program to the Arduino's flash memory</li>
+</ul>
+<p>For more debugging information, run <code>avrdude</code> with one or more <code>-v</code> flags.</p>
 
                     </main>
 

@@ -161,20 +161,22 @@
 <li>avr-gcc (only used as a linker frontend)</li>
 <li>avr-binutils (for linker support)</li>
 <li>avr-libc (for device-specific runtime libraries)</li>
+<li>avrdude (for flashing a real AVR chip)</li>
 </ul>
 <p>These should be installed by the operating system package manager.</p>
 <h2><a class="header" href="#arch-linux" id="arch-linux">Arch Linux</a></h2>
 <p>To install all required dependencies under Arch Linux, run</p>
-<pre><code class="language-bash">sudo pacman -S avr-gcc avr-libc
+<pre><code class="language-bash">sudo pacman -S avr-gcc avr-libc avrdude
 </code></pre>
 <h2><a class="header" href="#ubuntu" id="ubuntu">Ubuntu</a></h2>
 <p>To install all required dependencies under Ubuntu Linux, run</p>
-<pre><code class="language-bash">sudo apt-get install binutils gcc-avr avr-libc
+<pre><code class="language-bash">sudo apt-get install binutils gcc-avr avr-libc avrdude
 </code></pre>
 <h2><a class="header" href="#macos" id="macos">macOS</a></h2>
 <p>Set up the <a href="https://github.com/osx-cross/homebrew-avr">homebrew-avr</a> tap, then install the packages:</p>
-<pre><code class="language-bash">brew install avr-binutils avr-gcc
+<pre><code class="language-bash">brew install avr-binutils avr-gcc avrdude
 </code></pre>
+<p>Note that <code>avrdude</code> may be installed without the homebrew-avr tap.</p>
 
                     </main>
 
