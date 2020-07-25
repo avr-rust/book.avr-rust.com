@@ -8,4 +8,21 @@ Flashing a Rust ELF file is no different to flashing a regular AVR-GCC C/C++ gen
 * [AVRDUDE Project Homepage](https://www.nongnu.org/avrdude/)
 * [LadyADA AVRDUDE Tutorial](http://ladyada.net/learn/avr/avrdude.html)
 
-Better instructions, including an example showing the flashing of the LED blink program to an Arduino UNO, will be added to this guide in the future.
+## Arduino Uno
+
+Connect your Arduino Uno to your computer, and use `avrdude` to flash your crate. The example below uses the output from [the `blink` example](./003.2-example-building-blink.md).
+
+```bash
+avrdude -patmega328p -carduino -P[PORT] -b115200 -D -Uflash:w:target/avr-atmega328p/release/blink.elf:e
+```
+
+where
+* `-patmega328p` is the AVR part number
+* `-carduino` is the programmer
+* `-P[PORT]` is the serial port of your connected Arduino
+    * On Linux & macOS, replace `[PORT]` with your Arduino's serial port (like `/dev/ttyUSB0`)
+* `-b115200` is the baud rate
+* `-D` disables flash auto-erase
+* `-Uflash:w:target/avr-atmega328p/release/blink.elf:e` writes the `blink.elf` program to the Arduino's flash memory
+
+For more debugging information, run `avrdude` with one or more `-v` flags.
