@@ -1,0 +1,359 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>The AVR-Rust Guidebook</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.1.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.2-example-building-blink.html"><strong aria-hidden="true">3.2.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The AVR-Rust Guidebook</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#1-introduction" id="1-introduction">1. Introduction</a></h1>
+<p><a href="https://en.wikipedia.org/wiki/Atmel_AVR">AVR</a> is a type of low-frequency (sub-20MHz in general) 8-bit microcontroller developed by Atmel and owned by Microchip.</p>
+<p>The AVR-Rust project aims to add support to the <a href="https://www.rust-lang.org/">Rust</a> ecosystem so that executables can be generated for AVR, taking
+advantage of Rust's safety guarantees and ergonomics.</p>
+<p>The following book describes what you need to know to use Rust with AVR support.</p>
+<p>The source code of this book can be <a href="https://github.com/avr-rust/book.avr-rust.com">found on GitHub</a>, pull requests are welcome.</p>
+<h2><a class="header" href="#resources-and-links" id="resources-and-links">Resources and links</a></h2>
+<ul>
+<li><a href="https://github.com/avr-rust/book.avr-rust.com">The source code of this book</a></li>
+<li><a href="https://www.avr-rust.com">The AVR-Rust project homepage</a></li>
+<li><a href="https://github.com/avr-rust">The AVR-Rust organization on GitHub</a></li>
+<li><a href="https://github.com/rust-lang/rust/labels/O-AVR">Known compiler issue list</a></li>
+<li><a href="https://github.com/avr-rust/rust/issues">Known compiler issue list (legacy, read only)</a></li>
+<li><a href="https://github.com/avr-rust/awesome-avr-rust">awesome-avr-rust - a publicly curated list of AVR crates and projects</a></li>
+</ul>
+<h1><a class="header" href="#11-reporting-bugs" id="11-reporting-bugs">1.1. Reporting bugs</a></h1>
+<p>Bugs in this guide can be reported at the <a href="https://github.com/avr-rust/book.avr-rust.com/issues">GitHub repository for the book</a>.</p>
+<p>Bugs in Rust should be reported to Rust itself, ideally with the <code>[AVR]</code>  prefix on the issue title.
+After creation, the triage team will tag the issue as O-AVR for you.</p>
+<p>Bugs in ecosystem crates should be reported directly on the relevant crate's issue tracker where possible.</p>
+<p>If unclear, feel free to message the kind folks in the <a href="https://gitter.im/avr-rust/Lobby">avr-rust Gitter channel</a> for advice. Don't worry if you
+can't track it down to the right place 100% - know that it is better to report a bug in the wrong place than
+to not report it at all!</p>
+<h1><a class="header" href="#2-installing-the-compiler" id="2-installing-the-compiler">2. Installing the compiler</a></h1>
+<p>A few pieces of software must be installed to use Rust with AVR support</p>
+<ul>
+<li>A Rust compiler with AVR support enabled</li>
+<li>The source code of the compiler
+<ul>
+<li>This is required as <code>libcore</code> must be compiled lazily as AVRs are
+not generally ABI compatible with each other so the core library must be
+explicitly compiled for the AVR device that is being targeted at compile time.</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE</strong>: Make sure to also install the <a href="./002.1-installing-required-third-party-tools.html">required third party tools</a>. This, importantly, <strong>includes the linker</strong>.</p>
+<h2><a class="header" href="#installing-via-rustup-recommended" id="installing-via-rustup-recommended">Installing via Rustup (recommended)</a></h2>
+<p>AVR support is included in the official Rust nightly compiler as of July 2020. To use AVR support, it
+is sufficient to install the official Rust <code>nightly</code> compiler, as well as the <code>rust-src</code> component.</p>
+<p><strong>First, make sure that <code>rustup</code> is installed.</strong> If it is not, install it from <a href="https://rustup.rs/">rustup.rs</a>.</p>
+<p>Then install the <code>nightly</code> and <code>rust-src</code> components by running this in a terminal:</p>
+<pre><code>$ rustup component add rust-src --toolchain nightly
+</code></pre>
+<p>Installation complete. You can proceed to the next part <a href="./003-building-a-crate-for-avr.html">3. Building a crate for AVR</a>.</p>
+<h2><a class="header" href="#installing-or-building-from-source" id="installing-or-building-from-source">Installing or building from source</a></h2>
+<p>AVR support is included in any standard Rust nightly build. The standard <a href="https://rustc-dev-guide.rust-lang.org/getting-started.html">Rust development instructions</a> apply here.</p>
+<p><strong>NOTE</strong>: Compiling Rust/LLVM can be very memory intensive. You may find compilation abruptly stopping on machines with less
+than ~10GB of RAM due to the operating system out-of-memory killer stopping it. If compilation keeps terminating, check
+if there is a hard-to-spot &quot;process interrupted by operating system&quot; message near the bottom of the logs. If so, consider
+lowering parallelism flags (<code>-j N</code>, etc) to reduce memory pressure.</p>
+<h1><a class="header" href="#21-installing-required-third-party-tools" id="21-installing-required-third-party-tools">2.1. Installing required third party tools</a></h1>
+<p>A number of third party tools are required to use AVR Rust.</p>
+<ul>
+<li>avr-gcc (only used as a linker frontend)</li>
+<li>avr-binutils (for linker support)</li>
+<li>avr-libc (for device-specific runtime libraries)</li>
+</ul>
+<p>These should be installed by the operating system package manager.</p>
+<h2><a class="header" href="#arch-linux" id="arch-linux">Arch Linux</a></h2>
+<p>To install all required dependencies under Arch Linux, run</p>
+<pre><code class="language-bash">sudo pacman -S avr-gcc avr-libc
+</code></pre>
+<h2><a class="header" href="#ubuntu" id="ubuntu">Ubuntu</a></h2>
+<p>To install all required dependencies under Ubuntu Linux, run</p>
+<pre><code class="language-bash">sudo apt-get install binutils gcc-avr avr-libc
+</code></pre>
+<h2><a class="header" href="#macos" id="macos">macOS</a></h2>
+<p>Set up the <a href="https://github.com/osx-cross/homebrew-avr">homebrew-avr</a> tap, then install the packages:</p>
+<pre><code class="language-bash">brew install avr-binutils avr-gcc
+</code></pre>
+<h1><a class="header" href="#3-building-a-crate-for-avr" id="3-building-a-crate-for-avr">3. Building a crate for AVR</a></h1>
+<p>After setting up the compiler, you may use it to generate assembly or machine code targeting a specific AVR microcontroller model.</p>
+<h2><a class="header" href="#make-sure-you-use-the-nightly-version-of-rust-not-the-default-stable-channel" id="make-sure-you-use-the-nightly-version-of-rust-not-the-default-stable-channel">Make sure you use the nightly version of Rust, not the default stable channel</a></h2>
+<p>The best way to ensure a crate is using the Nightly compiler is to run <code>rustup override set nightly</code> inside a terminal
+within the root directory of the crate. After this is done, <code>cargo</code> will by-default use the AVR-enabled Nightly compiler
+any time <code>cargo</code> is used within the directory tree of the crate.</p>
+<h2><a class="header" href="#compiling-a-crate" id="compiling-a-crate">Compiling a crate</a></h2>
+<p>To compile and link an executable crate for AVR, run the following:</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>$ cargo build -Z build-std=core --target avr-atmega328p.json --release
+<span class="boring">}
+</span></code></pre></pre>
+<p>This will generate an AVR ELF file that can be subsequently flashed to a real device or ran inside a simulator.
+The ELF file will be available at <code>target/&lt;TARGET JSON NAME&gt;/release/&lt;CRATE NAME&gt;.elf</code>.</p>
+<p>Notes:</p>
+<ul>
+<li><strong><code>-Z build-std=core</code> is required whenever AVR is being targeted</strong>. See <a href="./003.1-note-about-rust-build-std-flag.html">3.1. A note about the required Rust <code>-Z build-std=&lt;CRATE,&gt;</code> flag</a> for more details.</li>
+<li><strong>A target specification JSON file should almost always be specified</strong>. There is a default target of <code>avr-unknown-unknown</code>, but this
+target should be avoided in virtually all real-life usecases[CITATION NEEDED]. The <code>avr-unknown-unknown</code> target is equivalent to the AVR-GCC default, partially-microcontroller-independent mode where the lowest common denominator - the <code>avr2</code> family - is targeted.</li>
+<li><code>--release</code>  is not strictly required - debug mode should be as correct as release mode - however, <strong>debug mode generates SLOW CODE, especially on AVR</strong>. Release mode is much better.</li>
+</ul>
+<p><strong>Example</strong>: An in-context example of compiling a crate is given for the LED blinking example in <a href="./003.2-example-building-blink.html">3.2. Example - Building the <code>blink</code> program for AVR</a>.</p>
+<h3><a class="header" href="#targeting-a-different-microcontroller-model" id="targeting-a-different-microcontroller-model">Targeting a different microcontroller model</a></h3>
+<p>Other models of AVR can be targeted by simply modifying the <code>cpu</code> field inside the target specification JSON. Each desired target microcontroller
+variant requires its own target specification JSON file differing only by the <code>cpu</code> field. You will find many of the existing AVR projects
+provide an-tree target specification JSON file only for the popular <code>atmega328p</code>, so you will in general need to duplicate the file and edit the <code>cpu</code>
+to get a crate compiling on a non-atmega328p microcontroler.</p>
+<h1><a class="header" href="#31-a-note-about-the-required-rust--z-build-stdcrate-flag" id="31-a-note-about-the-required-rust--z-build-stdcrate-flag">3.1. A note about the required Rust <code>-Z build-std=&lt;CRATE,&gt;</code> flag</a></h1>
+<p>AVR-Rust is not distributed with a pre-built libcore crate. Instead, it is compiled on-demand when a crate uses it via the Rust <code>-Z build-std</code> flag.</p>
+<p>There are many hundreds of variants of AVR microcontroller, and it is not feasible to distribute runtime libraries for all of them within a regular Rust distribution.</p>
+<p>Due to this, any time a crate is built for AVR, <code>-Z build-std=core</code> should be passed to <code>cargo</code>.</p>
+<h2><a class="header" href="#example" id="example">Example</a></h2>
+<pre><code class="language-bash">cargo build -Z build-std=core --target avr-atmega328p.json --release
+</code></pre>
+<h2><a class="header" href="#what-happens-if-you-dont-pass-it" id="what-happens-if-you-dont-pass-it">What happens if you don't pass it</a></h2>
+<p>Then you will get a &quot;cannot find crate for 'core'&quot; error when you compile the crate. The only crates that can
+avoid this are those that are <code>#[no_core]</code> crates, such as <code>libcore</code> itself.</p>
+<h2><a class="header" href="#more-information" id="more-information">More information</a></h2>
+<ul>
+<li><a href="https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#build-std">The official Rust docs on the unstable <code>build-std</code> flag</a></li>
+<li><a href="https://github.com/rust-lang/wg-cargo-std-aware">Tracking repository for the std-aware-cargo Working Group</a></li>
+</ul>
+<h1><a class="header" href="#32-example---building-the-blink-program-for-avr" id="32-example---building-the-blink-program-for-avr">3.2. Example - Building the <code>blink</code> program for AVR</a></h1>
+<p>This shell snippet shows an example that will build the LED blinking example
+for AVR.</p>
+<pre><code class="language-bash"># fetch and prepare the blink crate (only needs to be done once).
+$ git clone https://github.com/avr-rust/blink.git
+$ cd blink
+$ rustup override set nightly
+
+# compile the blink crate to an ELF file targeting atmega328p.
+$ cargo build -Z build-std=core --target avr-atmega328p.json --release
+</code></pre>
+<p>After compilation, the final ELF executable will be available at <code>target/avr-atmega328p/release/blink.elf</code>, ready to be flashed to a device
+or ran inside a simulator.</p>
+<pre><code class="language-bash">$ file target/avr-atmega328p/release/blink.elf
+target/avr-atmega328p/release/blink.elf: ELF 32-bit LSB executable, Atmel AVR 8-bit, version 1 (SYSV), statically linked, with debug_info, not stripped
+</code></pre>
+<p>Other AVR microcontroller models may be targeted by simply copying and modifying <code>avr-atmega328p.json</code>.</p>
+<h1><a class="header" href="#4-flashing-a-crate-to-a-real-avr-chip" id="4-flashing-a-crate-to-a-real-avr-chip">4. Flashing a crate to a real AVR chip</a></h1>
+<p>The <a href="https://www.nongnu.org/avrdude/">AVRDUDE</a> utility is recommended for flashing the final ELF file to a physical AVR microcontroller.</p>
+<p>Flashing a Rust ELF file is no different to flashing a regular AVR-GCC C/C++ generated ELF file.</p>
+<ul>
+<li><a href="https://www.nongnu.org/avrdude/">AVRDUDE Project Homepage</a></li>
+<li><a href="http://ladyada.net/learn/avr/avrdude.html">LadyADA AVRDUDE Tutorial</a></li>
+</ul>
+<p>Better instructions, including an example showing the flashing of the LED blink program to an Arduino UNO, will be added to this guide in the future.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
