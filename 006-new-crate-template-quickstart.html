@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Reporting bugs - The AVR-Rust Guidebook</title>
+        <title>5. Quick start using avr-rust/template-bin - The AVR-Rust Guidebook</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html" class="active"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.1.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.2-example-building-blink.html"><strong aria-hidden="true">3.2.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li><li class="chapter-item expanded "><a href="005-add-avr-support-to-crate.html"><strong aria-hidden="true">5.</strong> Adding AVR support to a crate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="005.1-the-target-specification-json-file.html"><strong aria-hidden="true">5.1.</strong> The target specification JSON file</a></li><li class="chapter-item expanded "><a href="005.2-adding-no-std-attribute.html"><strong aria-hidden="true">5.2.</strong> Adding the #[no_std] attribute</a></li></ol></li><li class="chapter-item expanded "><a href="006-new-crate-template-quickstart.html"><strong aria-hidden="true">6.</strong> Quick start using avr-rust/template-bin</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.1.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.2-example-building-blink.html"><strong aria-hidden="true">3.2.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li><li class="chapter-item expanded "><a href="005-add-avr-support-to-crate.html"><strong aria-hidden="true">5.</strong> Adding AVR support to a crate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="005.1-the-target-specification-json-file.html"><strong aria-hidden="true">5.1.</strong> The target specification JSON file</a></li><li class="chapter-item expanded "><a href="005.2-adding-no-std-attribute.html"><strong aria-hidden="true">5.2.</strong> Adding the #[no_std] attribute</a></li></ol></li><li class="chapter-item expanded "><a href="006-new-crate-template-quickstart.html" class="active"><strong aria-hidden="true">6.</strong> Quick start using avr-rust/template-bin</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,29 +155,35 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#11-reporting-bugs" id="11-reporting-bugs">1.1. Reporting bugs</a></h1>
-<p>Bugs in this guide can be reported at the <a href="https://github.com/avr-rust/book.avr-rust.com/issues">GitHub repository for the book</a>.</p>
-<p>Bugs in Rust should be reported to Rust itself, ideally with the <code>[AVR]</code>  prefix on the issue title.
-After creation, the triage team will tag the issue as O-AVR for you.</p>
-<p>Bugs in ecosystem crates should be reported directly on the relevant crate's issue tracker where possible.</p>
-<p>If unclear, feel free to message the kind folks in the <a href="https://gitter.im/avr-rust/Lobby">avr-rust Gitter channel</a> for advice. Don't worry if you
-can't track it down to the right place 100% - know that it is better to report a bug in the wrong place than
-to not report it at all!</p>
+                        <h1><a class="header" href="#52-quick-start-from-template" id="52-quick-start-from-template">5.2. Quick start from template</a></h1>
+<h2><a class="header" href="#quick-start" id="quick-start">Quick start</a></h2>
+<p>The quickest way to get going is to clone</p>
+<pre><code class="language-bash"># Download and extract the template repository to the current directory.
+curl &quot;https://codeload.github.com/avr-rust/template-bin/tar.gz/master&quot; | tar xvzf -
+
+# Then update the package name in Cargo.toml
+sed -i 's/template-bin/$YOUR_CRATE_NAME/g' template-bin-master/Cargo.toml
+# And rename the folder
+mv template-bin-master $YOUR_CRATE_NAME
+
+# Prepare a new Git repository
+cd $YOUR_CRATE_NAME
+git init
+</code></pre>
+<p>Then, to build an ELF file at <code>target/avr-atmega328p/release/$YOUR_CRATE_NAME.elf</code>, run:</p>
+<pre><code class="language-bash">cargo build --target avr-atmega328p.json -Z build-std=core --all --release
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="001-introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="005.2-adding-no-std-attribute.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="002-installing-the-compiler.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -187,15 +193,11 @@ to not report it at all!</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="001-introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="005.2-adding-no-std-attribute.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a rel="next" href="002-installing-the-compiler.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 

@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.1.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.2-example-building-blink.html"><strong aria-hidden="true">3.2.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.1.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.2-example-building-blink.html"><strong aria-hidden="true">3.2.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li><li class="chapter-item expanded "><a href="005-add-avr-support-to-crate.html"><strong aria-hidden="true">5.</strong> Adding AVR support to a crate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="005.1-the-target-specification-json-file.html"><strong aria-hidden="true">5.1.</strong> The target specification JSON file</a></li><li class="chapter-item expanded "><a href="005.2-adding-no-std-attribute.html"><strong aria-hidden="true">5.2.</strong> Adding the #[no_std] attribute</a></li></ol></li><li class="chapter-item expanded "><a href="006-new-crate-template-quickstart.html"><strong aria-hidden="true">6.</strong> Quick start using avr-rust/template-bin</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -316,6 +316,121 @@ target/avr-atmega328p/release/blink.elf: ELF 32-bit LSB executable, Atmel AVR 8-
 <li><code>-Uflash:w:target/avr-atmega328p/release/blink.elf:e</code> writes the <code>blink.elf</code> program to the Arduino's flash memory</li>
 </ul>
 <p>For more debugging information, run <code>avrdude</code> with one or more <code>-v</code> flags.</p>
+<h1><a class="header" href="#51-summary-of-steps" id="51-summary-of-steps">5.1. Summary of Steps</a></h1>
+<h2><a class="header" href="#initial-target-independent-steps-for-creating-a-new-crate" id="initial-target-independent-steps-for-creating-a-new-crate">Initial target-independent steps for creating a new crate</a></h2>
+<p>This first step is not AVR specific.</p>
+<pre><code class="language-bash"># Create a new binary project. You may also create a new library project with '--lib'.
+cargo new --bin my-new-project
+cd my-new-project
+
+# AVR requires the nightly compiler
+rustup override set nightly
+</code></pre>
+<h2><a class="header" href="#a-href0051-the-target-specification-json-filehtmlstep-1-adding-a-target-specification-json-file-for-avra" id="a-href0051-the-target-specification-json-filehtmlstep-1-adding-a-target-specification-json-file-for-avra"><a href="./005.1-the-target-specification-json-file.html">Step 1. Adding a target specification JSON file for AVR</a></a></h2>
+<p>Compared to most Rust targets like X86 or ARM, the AVR family of microcontrollers
+cannot be cleanly modelled under different &quot;families&quot; of chips that are
+ELF-compatible. This is due to the fact that there are special variants of chips
+with nonstandard ISA support, as well as the ELF <code>e_flags</code> field which has a value
+that also has special cases for certain microcontrollers.</p>
+<p>The upstream Rust compiler does not provide built-in targets for specific AVR
+microcontrollers. Instead, a target specification JSON file targeting a specific
+AVR device must be passed to Rust and Cargo.</p>
+<p><a href="./005.1-the-target-specification-json-file.html">Here</a> are the steps for creating and using a target specification
+JSON file for AVR.</p>
+<h2><a class="header" href="#a-href0052-adding-no-std-attributehtmlstep-2-adding-the-no_std-attribute-to-your-crate-roota" id="a-href0052-adding-no-std-attributehtmlstep-2-adding-the-no_std-attribute-to-your-crate-roota"><a href="./005.2-adding-no-std-attribute.html">Step 2. Adding the <code>#[no_std]</code> attribute to your crate root</a></a></h2>
+<p>Like many embedded targets, the standard library is not supported and so it must be opted out of.</p>
+<h2><a class="header" href="#step-n---more-documentation-is-on-its-way-in-the-meantime-a-hrefhttpsgithubcomavr-rustblinkavr-rustblinka-serves-as-a-reference-implementation" id="step-n---more-documentation-is-on-its-way-in-the-meantime-a-hrefhttpsgithubcomavr-rustblinkavr-rustblinka-serves-as-a-reference-implementation">Step N. - More documentation is on its way. In the meantime, <a href="https://github.com/avr-rust/blink/">avr-rust/blink</a> serves as a reference implementation</a></h2>
+<h1><a class="header" href="#52-the-target-specification-json-file" id="52-the-target-specification-json-file">5.2. The target specification JSON file</a></h1>
+<p>External resources:</p>
+<ul>
+<li><a href="https://rust-lang.github.io/rfcs/0131-target-specification.html">rust-lang RFC on target specification JSON files</a></li>
+<li><a href="https://doc.rust-lang.org/rustc/targets/custom.html">Upstream Rust documentation on custom target specifiactions</a> [outdated, <code>xargo</code> is no longer required]</li>
+</ul>
+<p>Rust provides a built-in list of target specifications that are viewable via <code>rustc --print target-list</code>. A custom target specification JSON file may
+be written to override and tweak various target-specific options, such as linker scripts, flags, and LLVM options.</p>
+<p>When compiling for AVR, a specific microcontroller variant/model must be targeted. This allows LLVM
+to generate instructions that confirm to each particular microcontroller's ABI and supported instruction
+set.</p>
+<h2><a class="header" href="#an-example---using-the-gnu-toolchain-for-linking-and-compiler-support-libraries" id="an-example---using-the-gnu-toolchain-for-linking-and-compiler-support-libraries">An example - using the GNU toolchain for linking and compiler support libraries</a></h2>
+<p>Here is an example target specification JSON file for the AVR atmega328p.</p>
+<p>This target specification:</p>
+<ul>
+<li>Enables the GNU AVR linker through the <code>avr-gcc</code> compiler frontend</li>
+<li>Tells the linker to include <code>libgcc</code> (as compiler-rt for AVR is not yet fully supported)</li>
+<li>Tells Rust not to pass the <code>--eh-frame-hdr</code> argument to the linker, which isn't supported by AVR-GCC and will cause and error if omitted.</li>
+<li>Instructs LLVM to use the <code>avr-unknown-unknown</code> target specifically for the <code>atmega328p</code> microcontroller</li>
+<li>Explicitly passed an <code>-mmcu</code> argument to the linker to ensure runtime libraries are not skipped by the linker</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;arch&quot;: &quot;avr&quot;,
+  &quot;cpu&quot;: &quot;atmega328p&quot;,
+  &quot;data-layout&quot;: &quot;e-P1-p:16:8-i8:8-i16:8-i32:8-i64:8-f32:8-f64:8-n8-a:8&quot;,
+  &quot;env&quot;: &quot;&quot;,
+  &quot;executables&quot;: true,
+  &quot;linker&quot;: &quot;avr-gcc&quot;,
+  &quot;linker-flavor&quot;: &quot;gcc&quot;,
+  &quot;linker-is-gnu&quot;: true,
+  &quot;llvm-target&quot;: &quot;avr-unknown-unknown&quot;,
+  &quot;no-compiler-rt&quot;: true,
+  &quot;os&quot;: &quot;unknown&quot;,
+  &quot;position-independent-executables&quot;: false,
+  &quot;exe-suffix&quot;: &quot;.elf&quot;,
+  &quot;eh-frame-header&quot;: false,
+  &quot;pre-link-args&quot;: {
+    &quot;gcc&quot;: [&quot;-mmcu=atmega328p&quot;]
+  },
+  &quot;late-link-args&quot;: {
+    &quot;gcc&quot;: [&quot;-lgcc&quot;]
+  },
+  &quot;target-c-int-width&quot;: &quot;16&quot;,
+  &quot;target-endian&quot;: &quot;little&quot;,
+  &quot;target-pointer-width&quot;: &quot;16&quot;,
+  &quot;vendor&quot;: &quot;unknown&quot;
+}
+</code></pre>
+<h3><a class="header" href="#adapting-to-another-microcontroller-variant" id="adapting-to-another-microcontroller-variant">Adapting to another microcontroller variant</a></h3>
+<p>Adapting a target specification JSON to another AVR variant is trivial.</p>
+<p>Options that must be updated to target individual microcontroller variants:</p>
+<ul>
+<li><code>cpu</code> - set to the lower-case model name of the desired AVR variant</li>
+<li><code>pre-link-args</code> - the correct <code>-mmcu</code> option, always equal to the <code>cpu</code>, must be updated</li>
+</ul>
+<h1><a class="header" href="#52-adding-the-no_std-attribute-to-your-crate" id="52-adding-the-no_std-attribute-to-your-crate">5.2. Adding the <code>#[no_std]</code> attribute to your crate</a></h1>
+<p>As an embedded target with no operating system, many faculties that the Rust
+standard library requires are not and could not be supported on AVR.</p>
+<p>Because of this, only <code>#[no_std]</code> crates may be compiled for AVR.</p>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>// src/main.rs or src/lib.rs
+
+#![no_std]
+
+fn my_function() {
+    // ...
+}
+
+// ...
+<span class="boring">}
+</span></code></pre></pre>
+<h1><a class="header" href="#52-quick-start-from-template" id="52-quick-start-from-template">5.2. Quick start from template</a></h1>
+<h2><a class="header" href="#quick-start" id="quick-start">Quick start</a></h2>
+<p>The quickest way to get going is to clone</p>
+<pre><code class="language-bash"># Download and extract the template repository to the current directory.
+curl &quot;https://codeload.github.com/avr-rust/template-bin/tar.gz/master&quot; | tar xvzf -
+
+# Then update the package name in Cargo.toml
+sed -i 's/template-bin/$YOUR_CRATE_NAME/g' template-bin-master/Cargo.toml
+# And rename the folder
+mv template-bin-master $YOUR_CRATE_NAME
+
+# Prepare a new Git repository
+cd $YOUR_CRATE_NAME
+git init
+</code></pre>
+<p>Then, to build an ELF file at <code>target/avr-atmega328p/release/$YOUR_CRATE_NAME.elf</code>, run:</p>
+<pre><code class="language-bash">cargo build --target avr-atmega328p.json -Z build-std=core --all --release
+</code></pre>
 
                     </main>
 
