@@ -28,3 +28,8 @@ AVR device must be passed to Rust and Cargo.
 [Here](./005.1-the-target-specification-json-file.md) are the steps for creating and using a target specification
 JSON file for AVR.
 
+## [Step 2. Adding the `#[no_std]` attribute to your crate root](./005.2-adding-no-std-attribute.md)
+
+Like many embedded targets, the standard library is not supported and so it must be opted out of.
+
+## Step N. - More documentation is on its way. In the meantime, [avr-rust/blink](https://github.com/avr-rust/blink/) serves as a reference implementation
