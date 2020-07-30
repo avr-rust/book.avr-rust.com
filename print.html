@@ -365,7 +365,7 @@ set.</p>
 <li>Tells the linker to include <code>libgcc</code> (as compiler-rt for AVR is not yet fully supported)</li>
 <li>Tells Rust not to pass the <code>--eh-frame-hdr</code> argument to the linker, which isn't supported by AVR-GCC and will cause and error if omitted.</li>
 <li>Instructs LLVM to use the <code>avr-unknown-unknown</code> target specifically for the <code>atmega328p</code> microcontroller</li>
-<li>Explicitly passed an <code>-mmcu</code> argument to the linker to ensure runtime libraries are not skipped by the linker</li>
+<li>Explicitly passes an <code>-mmcu</code> argument to the linker to ensure runtime libraries are not skipped by the linker</li>
 </ul>
 <pre><code class="language-json">{
   &quot;arch&quot;: &quot;avr&quot;,
