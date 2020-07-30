@@ -166,6 +166,12 @@ be written to override and tweak various target-specific options, such as linker
 <p>When compiling for AVR, a specific microcontroller variant/model must be targeted. This allows LLVM
 to generate instructions that confirm to each particular microcontroller's ABI and supported instruction
 set.</p>
+<p>The target specification JSON file:</p>
+<ul>
+<li>May live in any directory - most often, committed to version control.</li>
+<li>Any file name you like, so long as it's JSON</li>
+<li>Is given to Rust via the <code>--target my-target-spec.json</code>. For example, <code>cargo build --target ./targets/my-target-spec.json</code>.</li>
+</ul>
 <h2><a class="header" href="#an-example---using-the-gnu-toolchain-for-linking-and-compiler-support-libraries" id="an-example---using-the-gnu-toolchain-for-linking-and-compiler-support-libraries">An example - using the GNU toolchain for linking and compiler support libraries</a></h2>
 <p>Here is an example target specification JSON file for the AVR atmega328p.</p>
 <p>This target specification:</p>
