@@ -8,3 +8,6 @@
   - [A note about the required Rust `-Z build-std=<CRATE,>` flag](./003.1-note-about-rust-build-std-flag.md)
   - [Example - Building the `blink` program for AVR](./003.2-example-building-blink.md)
 - [4. Flashing a crate to a real AVR chip](./004-flashing-a-crate-to-chip.md)
+- [5. Adding AVR support to a crate](./005-add-avr-support-to-crate.md)
+  - [The target specification JSON file](./005.1-the-target-specification-json-file.md)
+- [5. Quick start using `avr-rust/template-bin`](./006-new-crate-template-quickstart.md)
