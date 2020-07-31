@@ -32,4 +32,9 @@ JSON file for AVR.
 
 Like many embedded targets, the standard library is not supported and so it must be opted out of.
 
+## [Step 3. Creating an executable entry point with `#[no_main]`](./005.3-creating-an-executable-entry-point.md)
+
+As we are using the device-specific startup runtime libraries for C/C++ under AVR-GCC, we must bypass Rust's
+usual handling of the main function so that the main function is correctly picked up by the GCC startup libraries.
+
 ## Step N. - More documentation is on its way. In the meantime, [avr-rust/blink](https://github.com/avr-rust/blink/) serves as a reference implementation
