@@ -37,4 +37,12 @@ Like many embedded targets, the standard library is not supported and so it must
 As we are using the device-specific startup runtime libraries for C/C++ under AVR-GCC, we must bypass Rust's
 usual handling of the main function so that the main function is correctly picked up by the GCC startup libraries.
 
+## [Step 4. Choosing an input/output library](./005.4-choosing-an-io-library.md )
+
+Use an existing library or write your own - your choice.
+
+Recommended is [embedded-hal](https://github.com/rust-embedded/embedded-hal), which provides
+a architecture-independent way to expose GPIO pins and peripherals that works
+across devices such as AVR and ARM.
+
 ## Step N. - More documentation is on its way. In the meantime, [avr-rust/blink](https://github.com/avr-rust/blink/) serves as a reference implementation
