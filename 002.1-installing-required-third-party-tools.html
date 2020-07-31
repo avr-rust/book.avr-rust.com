@@ -172,6 +172,18 @@
 <p>To install all required dependencies under Ubuntu Linux, run</p>
 <pre><code class="language-bash">sudo apt-get install binutils gcc-avr avr-libc avrdude
 </code></pre>
+<h2><a class="header" href="#linux" id="linux">Linux</a></h2>
+<p>If your distribution's package manager doesn't provide these tools, you can install them manually.</p>
+<h3><a class="header" href="#avr-toolchain" id="avr-toolchain">AVR Toolchain</a></h3>
+<p>The AVR toolchain is necessary for compilation, and can be downloaded for several platforms from the manufacturer's website:</p>
+<p>https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers</p>
+<p>Once you uncompress the tar.gz for your system, add the subdirectory <code>{platform}/bin</code> to your PATH.  For example, if you uncompressed the archive to <code>~/Downloads/avr8-gnu-toolchain-3.6.2.1759-linux.any.x86_64/</code>, then you'd add this to your <code>.bashrc</code> file:</p>
+<pre><code class="language-bash">PATH=$PATH:$HOME/Downloads/avr8-gnu-toolchain-3.6.2.1759-linux.any.x86_64/avr8-gnu-toolchain-linux_x86_64/bin/
+</code></pre>
+<h3><a class="header" href="#avrdude" id="avrdude">AVRDUDE</a></h3>
+<p>AVRDUDE is necessary to flash your compiled binary to an AVR chip.  It can be downloaded from the project website:</p>
+<p>http://download.savannah.gnu.org/releases/avrdude/</p>
+<p>Download and uncompress the latest version for your system, and follow the instructions in the <code>INSTALL</code> file.</p>
 <h2><a class="header" href="#macos" id="macos">macOS</a></h2>
 <p>Set up the <a href="https://github.com/osx-cross/homebrew-avr">homebrew-avr</a> tap, then install the packages:</p>
 <pre><code class="language-bash">brew install avr-binutils avr-gcc avrdude
