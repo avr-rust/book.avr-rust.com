@@ -12,4 +12,4 @@
   - [The target specification JSON file](./005.1-the-target-specification-json-file.md)
   - [Adding the `#[no_std]` attribute](./005.2-adding-no-std-attribute.md)
   - [Creating an executable entry point with `#[no_main]`](005.3-creating-an-executable-entry-point.md)
-- [5. Quick start using `avr-rust/template-bin`](./006-new-crate-template-quickstart.md)
+- [6. Quick start using `avr-rust/template-bin`](./006-new-crate-template-quickstart.md)
