@@ -91,7 +91,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.1.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.2-example-building-blink.html"><strong aria-hidden="true">3.2.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li><li class="chapter-item expanded "><a href="005-add-avr-support-to-crate.html"><strong aria-hidden="true">5.</strong> Adding AVR support to a crate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="005.1-the-target-specification-json-file.html"><strong aria-hidden="true">5.1.</strong> The target specification JSON file</a></li><li class="chapter-item expanded "><a href="005.2-adding-no-std-attribute.html"><strong aria-hidden="true">5.2.</strong> Adding the #[no_std] attribute</a></li></ol></li><li class="chapter-item expanded "><a href="006-new-crate-template-quickstart.html"><strong aria-hidden="true">6.</strong> Quick start using avr-rust/template-bin</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.1.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.2-example-building-blink.html"><strong aria-hidden="true">3.2.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li><li class="chapter-item expanded "><a href="005-add-avr-support-to-crate.html"><strong aria-hidden="true">5.</strong> Adding AVR support to a crate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="005.1-the-target-specification-json-file.html"><strong aria-hidden="true">5.1.</strong> The target specification JSON file</a></li><li class="chapter-item expanded "><a href="005.2-adding-no-std-attribute.html"><strong aria-hidden="true">5.2.</strong> Adding the #[no_std] attribute</a></li><li class="chapter-item expanded "><a href="005.3-creating-an-executable-entry-point.html"><strong aria-hidden="true">5.3.</strong> Creating an executable entry point with #[no_main]</a></li></ol></li><li class="chapter-item expanded "><a href="006-new-crate-template-quickstart.html"><strong aria-hidden="true">6.</strong> Quick start using avr-rust/template-bin</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -339,6 +339,9 @@ AVR device must be passed to Rust and Cargo.</p>
 JSON file for AVR.</p>
 <h2><a class="header" href="#a-href0052-adding-no-std-attributehtmlstep-2-adding-the-no_std-attribute-to-your-crate-roota" id="a-href0052-adding-no-std-attributehtmlstep-2-adding-the-no_std-attribute-to-your-crate-roota"><a href="./005.2-adding-no-std-attribute.html">Step 2. Adding the <code>#[no_std]</code> attribute to your crate root</a></a></h2>
 <p>Like many embedded targets, the standard library is not supported and so it must be opted out of.</p>
+<h2><a class="header" href="#a-href0053-creating-an-executable-entry-pointhtmlstep-3-creating-an-executable-entry-point-with-no_maina" id="a-href0053-creating-an-executable-entry-pointhtmlstep-3-creating-an-executable-entry-point-with-no_maina"><a href="./005.3-creating-an-executable-entry-point.html">Step 3. Creating an executable entry point with <code>#[no_main]</code></a></a></h2>
+<p>As we are using the device-specific startup runtime libraries for C/C++ under AVR-GCC, we must bypass Rust's
+usual handling of the main function so that the main function is correctly picked up by the GCC startup libraries.</p>
 <h2><a class="header" href="#step-n---more-documentation-is-on-its-way-in-the-meantime-a-hrefhttpsgithubcomavr-rustblinkavr-rustblinka-serves-as-a-reference-implementation" id="step-n---more-documentation-is-on-its-way-in-the-meantime-a-hrefhttpsgithubcomavr-rustblinkavr-rustblinka-serves-as-a-reference-implementation">Step N. - More documentation is on its way. In the meantime, <a href="https://github.com/avr-rust/blink/">avr-rust/blink</a> serves as a reference implementation</a></h2>
 <h1><a class="header" href="#52-the-target-specification-json-file" id="52-the-target-specification-json-file">5.2. The target specification JSON file</a></h1>
 <p>External resources:</p>
@@ -426,6 +429,34 @@ fn my_function() {
 // ...
 <span class="boring">}
 </span></code></pre></pre>
+<h1><a class="header" href="#53-creating-an-executable-entry-point-with-no_main" id="53-creating-an-executable-entry-point-with-no_main">5.3. Creating an executable entry point with <code>#[no_main]</code></a></h1>
+<p>The standard Rust AVR toolchain will use AVR-GCC's linker and chip-specific startup runtime libraries.
+Due to this, it is necessary to override Rust's default behaviour for the main function and instead
+write one that looks exactly like a AVR-GCC C/C++ main function so that the regular AVR-GCC libraries
+will link to it correctly.</p>
+<p>To define a <code>main</code> function for AVR:</p>
+<ul>
+<li>Add the <code>#![no_main]</code> attribute to the top of the crate root (<code>src/main.rs</code>)</li>
+<li>Add a custom <code>main</code> function callable from C that will be picked up by AVR-GCC's startup libraries</li>
+</ul>
+<pre><pre class="playground"><code class="language-rust">// src/main.rs
+
+#![no_std] // from the previous step
+#![no_main]
+
+#[no_mangle]
+pub extern fn main() {
+}
+</code></pre></pre>
+<p>Notes:</p>
+<ul>
+<li>The <code>#![no_main]</code> attribute tells Rust to skip its usual expectations on the main function, instead
+letting the developer manually handle it. In the usual case for AVR, the target specification JSON file
+will link startup files from AVR-GCC and thus the ABI of the Rust <code>main</code> function must match that
+of the of AVR-GCC startup files.</li>
+<li>These steps can be applied to any executable within a crate, including those in the <code>examples/</code> directory
+for a library and those injected via <code>[[bin]]</code> attributes in the <code>Cargo.toml</code>.</li>
+</ul>
 <h1><a class="header" href="#52-quick-start-from-template" id="52-quick-start-from-template">5.2. Quick start from template</a></h1>
 <h2><a class="header" href="#quick-start" id="quick-start">Quick start</a></h2>
 <p>The quickest way to get going is to clone</p>

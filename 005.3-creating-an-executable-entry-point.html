@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>4. Flashing a crate to a real AVR chip - The AVR-Rust Guidebook</title>
+        <title>Creating an executable entry point with #[no_main] - The AVR-Rust Guidebook</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.1.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.2-example-building-blink.html"><strong aria-hidden="true">3.2.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html" class="active"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li><li class="chapter-item expanded "><a href="005-add-avr-support-to-crate.html"><strong aria-hidden="true">5.</strong> Adding AVR support to a crate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="005.1-the-target-specification-json-file.html"><strong aria-hidden="true">5.1.</strong> The target specification JSON file</a></li><li class="chapter-item expanded "><a href="005.2-adding-no-std-attribute.html"><strong aria-hidden="true">5.2.</strong> Adding the #[no_std] attribute</a></li><li class="chapter-item expanded "><a href="005.3-creating-an-executable-entry-point.html"><strong aria-hidden="true">5.3.</strong> Creating an executable entry point with #[no_main]</a></li></ol></li><li class="chapter-item expanded "><a href="006-new-crate-template-quickstart.html"><strong aria-hidden="true">6.</strong> Quick start using avr-rust/template-bin</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.1.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.2-example-building-blink.html"><strong aria-hidden="true">3.2.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li><li class="chapter-item expanded "><a href="005-add-avr-support-to-crate.html"><strong aria-hidden="true">5.</strong> Adding AVR support to a crate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="005.1-the-target-specification-json-file.html"><strong aria-hidden="true">5.1.</strong> The target specification JSON file</a></li><li class="chapter-item expanded "><a href="005.2-adding-no-std-attribute.html"><strong aria-hidden="true">5.2.</strong> Adding the #[no_std] attribute</a></li><li class="chapter-item expanded "><a href="005.3-creating-an-executable-entry-point.html" class="active"><strong aria-hidden="true">5.3.</strong> Creating an executable entry point with #[no_main]</a></li></ol></li><li class="chapter-item expanded "><a href="006-new-crate-template-quickstart.html"><strong aria-hidden="true">6.</strong> Quick start using avr-rust/template-bin</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,44 +155,47 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#4-flashing-a-crate-to-a-real-avr-chip" id="4-flashing-a-crate-to-a-real-avr-chip">4. Flashing a crate to a real AVR chip</a></h1>
-<p>The <a href="https://www.nongnu.org/avrdude/">AVRDUDE</a> utility is recommended for flashing the final ELF file to a physical AVR microcontroller.</p>
-<p>Flashing a Rust ELF file is no different to flashing a regular AVR-GCC C/C++ generated ELF file.</p>
+                        <h1><a class="header" href="#53-creating-an-executable-entry-point-with-no_main" id="53-creating-an-executable-entry-point-with-no_main">5.3. Creating an executable entry point with <code>#[no_main]</code></a></h1>
+<p>The standard Rust AVR toolchain will use AVR-GCC's linker and chip-specific startup runtime libraries.
+Due to this, it is necessary to override Rust's default behaviour for the main function and instead
+write one that looks exactly like a AVR-GCC C/C++ main function so that the regular AVR-GCC libraries
+will link to it correctly.</p>
+<p>To define a <code>main</code> function for AVR:</p>
 <ul>
-<li><a href="https://www.nongnu.org/avrdude/">AVRDUDE Project Homepage</a></li>
-<li><a href="http://ladyada.net/learn/avr/avrdude.html">LadyADA AVRDUDE Tutorial</a></li>
+<li>Add the <code>#![no_main]</code> attribute to the top of the crate root (<code>src/main.rs</code>)</li>
+<li>Add a custom <code>main</code> function callable from C that will be picked up by AVR-GCC's startup libraries</li>
 </ul>
-<h2><a class="header" href="#arduino-uno" id="arduino-uno">Arduino Uno</a></h2>
-<p>Connect your Arduino Uno to your computer, and use <code>avrdude</code> to flash your crate. The example below uses the output from <a href="./003.2-example-building-blink.html">the <code>blink</code> example</a>.</p>
-<pre><code class="language-bash">avrdude -patmega328p -carduino -P[PORT] -b115200 -D -Uflash:w:target/avr-atmega328p/release/blink.elf:e
-</code></pre>
-<p>where</p>
+<pre><pre class="playground"><code class="language-rust">// src/main.rs
+
+#![no_std] // from the previous step
+#![no_main]
+
+#[no_mangle]
+pub extern fn main() {
+}
+</code></pre></pre>
+<p>Notes:</p>
 <ul>
-<li><code>-patmega328p</code> is the AVR part number</li>
-<li><code>-carduino</code> is the programmer</li>
-<li><code>-P[PORT]</code> is the serial port of your connected Arduino
-<ul>
-<li>On Linux &amp; macOS, replace <code>[PORT]</code> with your Arduino's serial port (like <code>/dev/ttyUSB0</code>)</li>
+<li>The <code>#![no_main]</code> attribute tells Rust to skip its usual expectations on the main function, instead
+letting the developer manually handle it. In the usual case for AVR, the target specification JSON file
+will link startup files from AVR-GCC and thus the ABI of the Rust <code>main</code> function must match that
+of the of AVR-GCC startup files.</li>
+<li>These steps can be applied to any executable within a crate, including those in the <code>examples/</code> directory
+for a library and those injected via <code>[[bin]]</code> attributes in the <code>Cargo.toml</code>.</li>
 </ul>
-</li>
-<li><code>-b115200</code> is the baud rate</li>
-<li><code>-D</code> disables flash auto-erase</li>
-<li><code>-Uflash:w:target/avr-atmega328p/release/blink.elf:e</code> writes the <code>blink.elf</code> program to the Arduino's flash memory</li>
-</ul>
-<p>For more debugging information, run <code>avrdude</code> with one or more <code>-v</code> flags.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="003.2-example-building-blink.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="005.2-adding-no-std-attribute.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="005-add-avr-support-to-crate.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="006-new-crate-template-quickstart.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -204,13 +207,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="003.2-example-building-blink.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="005.2-adding-no-std-attribute.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="005-add-avr-support-to-crate.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="006-new-crate-template-quickstart.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
