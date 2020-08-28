@@ -26,3 +26,9 @@ where
 * `-Uflash:w:target/avr-atmega328p/release/blink.elf:e` writes the `blink.elf` program to the Arduino's flash memory
 
 For more debugging information, run `avrdude` with one or more `-v` flags.
+
+Note: on older Arduino versions, you may get a series of `avrdude: stk500_getsync(): not in sync: resp=0x00` errors indicating you need to use a slower baud rate:
+
+```bash
+avrdude -patmega328p -carduino -P/dev/[PORT] -b57600 -D -Uflash:w:target/avr-atmega328p/release/blink.elf:e
+```
