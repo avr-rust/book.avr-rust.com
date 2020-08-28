@@ -20,6 +20,8 @@ is sufficient to install the official Rust `nightly` compiler, as well as the `r
 Then install the `nightly` and `rust-src` components by running this in a terminal:
 
 ```
+$ rustup toolchain install nightly
+...
 $ rustup component add rust-src --toolchain nightly
 ```
 
