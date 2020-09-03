@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>1. Introduction - The AVR-Rust Guidebook</title>
+        <title>The built-in avr-unknown-gnu-atmega328 target - The AVR-Rust Guidebook</title>
         
         
 
@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html" class="active"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-the-avr-unknown-gnu-atmega328-target.html"><strong aria-hidden="true">3.1.</strong> The built-in avr-unknown-gnu-atmega328 target</a></li><li class="chapter-item expanded "><a href="003.2-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.2.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.3-example-building-blink.html"><strong aria-hidden="true">3.3.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li><li class="chapter-item expanded "><a href="005-add-avr-support-to-crate.html"><strong aria-hidden="true">5.</strong> Adding AVR support to a crate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="005.1-the-target-specification-json-file.html"><strong aria-hidden="true">5.1.</strong> The target specification JSON file</a></li><li class="chapter-item expanded "><a href="005.2-adding-no-std-attribute.html"><strong aria-hidden="true">5.2.</strong> Adding the #[no_std] attribute</a></li><li class="chapter-item expanded "><a href="005.3-creating-an-executable-entry-point.html"><strong aria-hidden="true">5.3.</strong> Creating an executable entry point with #[no_main]</a></li><li class="chapter-item expanded "><a href="005.4-choosing-an-io-library.html"><strong aria-hidden="true">5.4.</strong> Choosing an input/output library</a></li></ol></li><li class="chapter-item expanded "><a href="006-new-crate-template-quickstart.html"><strong aria-hidden="true">6.</strong> Quick start using avr-rust/template-bin</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="001-introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="001.1-reporting-bugs.html"><strong aria-hidden="true">1.1.</strong> Reporting bugs</a></li></ol></li><li class="chapter-item expanded "><a href="002-installing-the-compiler.html"><strong aria-hidden="true">2.</strong> Installing the compiler</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="002.1-installing-required-third-party-tools.html"><strong aria-hidden="true">2.1.</strong> Installing required third party tools</a></li></ol></li><li class="chapter-item expanded "><a href="003-building-a-crate-for-avr.html"><strong aria-hidden="true">3.</strong> Building a crate for AVR</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="003.1-the-avr-unknown-gnu-atmega328-target.html" class="active"><strong aria-hidden="true">3.1.</strong> The built-in avr-unknown-gnu-atmega328 target</a></li><li class="chapter-item expanded "><a href="003.2-note-about-rust-build-std-flag.html"><strong aria-hidden="true">3.2.</strong> A note about the required Rust -Z build-std=&lt;CRATE,&gt; flag</a></li><li class="chapter-item expanded "><a href="003.3-example-building-blink.html"><strong aria-hidden="true">3.3.</strong> Example - Building the blink program for AVR</a></li></ol></li><li class="chapter-item expanded "><a href="004-flashing-a-crate-to-chip.html"><strong aria-hidden="true">4.</strong> Flashing a crate to a real AVR chip</a></li><li class="chapter-item expanded "><a href="005-add-avr-support-to-crate.html"><strong aria-hidden="true">5.</strong> Adding AVR support to a crate</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="005.1-the-target-specification-json-file.html"><strong aria-hidden="true">5.1.</strong> The target specification JSON file</a></li><li class="chapter-item expanded "><a href="005.2-adding-no-std-attribute.html"><strong aria-hidden="true">5.2.</strong> Adding the #[no_std] attribute</a></li><li class="chapter-item expanded "><a href="005.3-creating-an-executable-entry-point.html"><strong aria-hidden="true">5.3.</strong> Creating an executable entry point with #[no_main]</a></li><li class="chapter-item expanded "><a href="005.4-choosing-an-io-library.html"><strong aria-hidden="true">5.4.</strong> Choosing an input/output library</a></li></ol></li><li class="chapter-item expanded "><a href="006-new-crate-template-quickstart.html"><strong aria-hidden="true">6.</strong> Quick start using avr-rust/template-bin</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -155,31 +155,78 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#1-introduction" id="1-introduction">1. Introduction</a></h1>
-<p><a href="https://en.wikipedia.org/wiki/Atmel_AVR">AVR</a> is a type of low-frequency (sub-20MHz in general) 8-bit microcontroller developed by Atmel and owned by Microchip.</p>
-<p>The AVR-Rust project aims to add support to the <a href="https://www.rust-lang.org/">Rust</a> ecosystem so that executables can be generated for AVR, taking
-advantage of Rust's safety guarantees and ergonomics.</p>
-<p>The following book describes what you need to know to use Rust with AVR support.</p>
-<p>The source code of this book can be <a href="https://github.com/avr-rust/book.avr-rust.com">found on GitHub</a>, pull requests are welcome.</p>
-<h2><a class="header" href="#resources-and-links" id="resources-and-links">Resources and links</a></h2>
+                        <h1><a class="header" href="#31-the-built-in-avr-unknown-gnu-atmega328-target" id="31-the-built-in-avr-unknown-gnu-atmega328-target">3.1. The built-in <code>avr-unknown-gnu-atmega328</code> target</a></h1>
+<p>The Rust nightly compiler contains a built-in target, <code>avr-unknown-gnu-atmega328</code>, that
+generates code for the AVR <a href="https://en.wikipedia.org/wiki/ATmega328">ATmega328</a> using the
+GNU AVR-GCC toolchain for linking support.</p>
+<h2><a class="header" href="#targeting-custom-microcontrollers-by-adapting-avr-unkonwn-gnu-atmega328" id="targeting-custom-microcontrollers-by-adapting-avr-unkonwn-gnu-atmega328">Targeting custom microcontrollers by adapting 'avr-unkonwn-gnu-atmega328'</a></h2>
+<p>See the section [./005.1-the-target-specification-json-file.md](5.1. The Target Specification JSON File) for
+more information about how Rust target specification JSON files work.</p>
+<p>To generate a Rust target specification JSON file from the builtin:</p>
+<pre><code class="language-bash">rustc --print target-spec-json -Z unstable-options --target avr-unknown-gnu-atmega328 &gt; my-custom-avr-unknown-gnu-atmega328.json
+</code></pre>
+<p>This prints the target specification JSON file <code>my-custom-avr-unknown-gnu-atmega328.json</code>:</p>
+<pre><code class="language-json">{
+  &quot;arch&quot;: &quot;avr&quot;,
+  &quot;cpu&quot;: &quot;atmega328&quot;,
+  &quot;data-layout&quot;: &quot;e-P1-p:16:8-i8:8-i16:8-i32:8-i64:8-f32:8-f64:8-n8-a:8&quot;,
+  &quot;eh-frame-header&quot;: false,
+  &quot;env&quot;: &quot;&quot;,
+  &quot;exe-suffix&quot;: &quot;.elf&quot;,
+  &quot;executables&quot;: true,
+  &quot;is-builtin&quot;: true,
+  &quot;late-link-args&quot;: {
+    &quot;gcc&quot;: [
+      &quot;-lgcc&quot;
+    ]
+  },
+  &quot;linker&quot;: &quot;avr-gcc&quot;,
+  &quot;linker-flavor&quot;: &quot;gcc&quot;,
+  &quot;linker-is-gnu&quot;: true,
+  &quot;llvm-target&quot;: &quot;avr-unknown-unknown&quot;,
+  &quot;os&quot;: &quot;unknown&quot;,
+  &quot;pre-link-args&quot;: {
+    &quot;gcc&quot;: [
+      &quot;-mmcu=atmega328&quot;,
+      &quot;-Wl,--as-needed&quot;
+    ]
+  },
+  &quot;target-c-int-width&quot;: &quot;16&quot;,
+  &quot;target-endian&quot;: &quot;little&quot;,
+  &quot;target-pointer-width&quot;: &quot;16&quot;,
+  &quot;vendor&quot;: &quot;unknown&quot;
+}
+</code></pre>
+<p>To adapt this file to target a different microcontroller:</p>
 <ul>
-<li><a href="https://github.com/avr-rust/book.avr-rust.com">The source code of this book</a></li>
-<li><a href="https://www.avr-rust.com">The AVR-Rust project homepage</a></li>
-<li><a href="https://github.com/avr-rust">The AVR-Rust organization on GitHub</a></li>
-<li><a href="https://github.com/rust-lang/rust/labels/O-AVR">Known compiler issue list</a></li>
-<li><a href="https://github.com/avr-rust/rust/issues">Known compiler issue list (legacy, read only)</a></li>
-<li><a href="https://github.com/avr-rust/awesome-avr-rust">awesome-avr-rust - a publicly curated list of AVR crates and projects</a></li>
-<li><a href="https://github.com/avr-rust/template-bin">New executable template repository <code>avr-rust/template-bin</code></a></li>
+<li>Replace the top-level <code>&quot;cpu&quot;: &quot;atmega328&quot;</code> with <code>&quot;cpu&quot;: &quot;YOUR-AVR-VARIANT-NAME&quot;</code></li>
+<li>Replace <code>&quot;-mmcu=atmega328&quot;</code> with <code>&quot;-mmcu=YOUR-AVR-VARIANT-NAME&quot;</code></li>
 </ul>
+<p>The file can then be passed to Rust via the <code>rustc --target &lt;JSON FILE PATH&gt;</code> instead of
+<code>rustc --target avr-unknown-gnu-atmega328</code>, which will tailor the generated code to your
+desired microcontroller.</p>
+<p>It is also possible to customize link parameters if desired by modifying the JSON file.</p>
+<h2><a class="header" href="#compiling-for-avr-without-the-gnu-toolchain" id="compiling-for-avr-without-the-gnu-toolchain">Compiling for AVR without the GNU toolchain</a></h2>
+<p>At the moment, the only builtin AVR target <code>avr-unknown-gnu-atmega328</code> always requires
+AVR-GCC, AVR-libc and AVR-binutils from the GNU project.</p>
+<p>The LLVM LLD linker has some limited support for AVR which in the future could be leveraged
+to allow compiling AVR Rust binaries without the dependency on the GNU toolchain. Some work
+on <code>compiler-builtins</code> and others would also be required. At the moment, the GNU toolchain
+is a hard dependency.
+no t</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="003-building-a-crate-for-avr.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="001.1-reporting-bugs.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="003.2-note-about-rust-build-std-flag.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -191,9 +238,13 @@ advantage of Rust's safety guarantees and ergonomics.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a rel="prev" href="003-building-a-crate-for-avr.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a rel="next" href="001.1-reporting-bugs.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="003.2-note-about-rust-build-std-flag.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
