@@ -173,7 +173,9 @@ explicitly compiled for the AVR device that is being targeted at compile time.</
 is sufficient to install the official Rust <code>nightly</code> compiler, as well as the <code>rust-src</code> component.</p>
 <p><strong>First, make sure that <code>rustup</code> is installed.</strong> If it is not, install it from <a href="https://rustup.rs/">rustup.rs</a>.</p>
 <p>Then install the <code>nightly</code> and <code>rust-src</code> components by running this in a terminal:</p>
-<pre><code>$ rustup component add rust-src --toolchain nightly
+<pre><code>$ rustup toolchain install nightly
+...
+$ rustup component add rust-src --toolchain nightly
 </code></pre>
 <p>Installation complete. You can proceed to the next part <a href="./003-building-a-crate-for-avr.html">3. Building a crate for AVR</a>.</p>
 <h2><a class="header" href="#installing-or-building-from-source" id="installing-or-building-from-source">Installing or building from source</a></h2>
