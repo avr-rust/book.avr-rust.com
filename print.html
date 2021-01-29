@@ -351,8 +351,7 @@ AVR-GCC, AVR-libc and AVR-binutils from the GNU project.</p>
 <p>The LLVM LLD linker has some limited support for AVR which in the future could be leveraged
 to allow compiling AVR Rust binaries without the dependency on the GNU toolchain. Some work
 on <code>compiler-builtins</code> and others would also be required. At the moment, the GNU toolchain
-is a hard dependency.
-no t</p>
+is a hard dependency.</p>
 <h1><a class="header" href="#32-a-note-about-the-required-rust--z-build-stdcrate-flag" id="32-a-note-about-the-required-rust--z-build-stdcrate-flag">3.2. A note about the required Rust <code>-Z build-std=&lt;CRATE,&gt;</code> flag</a></h1>
 <p>AVR-Rust is not distributed with a pre-built libcore crate. Instead, it is compiled on-demand when a crate uses it via the Rust <code>-Z build-std</code> flag.</p>
 <p>There are many hundreds of variants of AVR microcontroller, and it is not feasible to distribute runtime libraries for all of them within a regular Rust distribution.</p>
