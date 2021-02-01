@@ -375,6 +375,9 @@ $ git clone https://github.com/avr-rust/blink.git
 $ cd blink
 $ rustup override set nightly
 
+# Configure the 'ruduino' crate with a MCU frequency of 16MHz
+$ export AVR_CPU_FREQUENCY_HZ=16000000
+
 # compile the blink crate to an ELF file targeting atmega328p.
 $ cargo build -Z build-std=core --target avr-atmega328p.json --release
 </code></pre>
