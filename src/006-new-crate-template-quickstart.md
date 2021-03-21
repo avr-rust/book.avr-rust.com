@@ -1,4 +1,4 @@
-# 5.2. Quick start from template
+# 6. Quick start from template
 
 ## Quick start
 
