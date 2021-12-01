@@ -291,7 +291,7 @@ The ELF file will be available at <code>target/&lt;TARGET NAME&gt;/release/&lt;C
 <li><strong><code>-Z build-std=core</code> is required whenever AVR is being targeted</strong>. See <a href="./003.2-note-about-rust-build-std-flag.html">3.2. A note about the required Rust <code>-Z build-std=&lt;CRATE,&gt;</code> flag</a> for more details.</li>
 <li><code>--release</code>  is not strictly required - debug mode should be as correct as release mode - however, <strong>debug mode generates SLOW CODE, especially on AVR</strong>. Release mode is much better.</li>
 </ul>
-<p><strong>Example</strong>: An in-context example of compiling a crate is given for the LED blinking example in <a href="./003.2-example-building-blink.html">3.2. Example - Building the <code>blink</code> program for AVR</a>.</p>
+<p><strong>Example</strong>: An in-context example of compiling a crate is given for the LED blinking example in <a href="./003.3-example-building-blink.html">3.3. Example - Building the <code>blink</code> program for AVR</a>.</p>
 <h3><a class="header" href="#targeting-a-different-microcontroller-model" id="targeting-a-different-microcontroller-model">Targeting a different microcontroller model</a></h3>
 <p>The recommended way to do this is with a custom target specification JSON file per the instructions in <a href="./003.1-the-avr-unknown-gnu-atmega328-target.html">3.1. The built-in <code>avr-unknown-gnu-atmega328</code> target</a>.</p>
 <h1><a class="header" href="#31-the-built-in-avr-unknown-gnu-atmega328-target" id="31-the-built-in-avr-unknown-gnu-atmega328-target">3.1. The built-in <code>avr-unknown-gnu-atmega328</code> target</a></h1>
