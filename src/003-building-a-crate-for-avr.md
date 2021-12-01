@@ -51,7 +51,7 @@ Notes:
   * **`-Z build-std=core` is required whenever AVR is being targeted**. See [3.2. A note about the required Rust `-Z build-std=<CRATE,>` flag](./003.2-note-about-rust-build-std-flag.md) for more details.
   * `--release`  is not strictly required - debug mode should be as correct as release mode - however, **debug mode generates SLOW CODE, especially on AVR**. Release mode is much better.
 
-**Example**: An in-context example of compiling a crate is given for the LED blinking example in [3.2. Example - Building the `blink` program for AVR](./003.2-example-building-blink.md).
+**Example**: An in-context example of compiling a crate is given for the LED blinking example in [3.3. Example - Building the `blink` program for AVR](./003.3-example-building-blink.md).
 
 ### Targeting a different microcontroller model
 
