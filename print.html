@@ -288,7 +288,7 @@ any time <code>cargo</code> is used within the directory tree of the crate.</p>
 The ELF file will be available at <code>target/&lt;TARGET NAME&gt;/release/&lt;CRATE NAME&gt;.elf</code>.</p>
 <p>Notes:</p>
 <ul>
-<li><strong><code>-Z build-std=core</code> is required whenever AVR is being targeted</strong>. See <a href="./003.1-note-about-rust-build-std-flag.html">3.1. A note about the required Rust <code>-Z build-std=&lt;CRATE,&gt;</code> flag</a> for more details.</li>
+<li><strong><code>-Z build-std=core</code> is required whenever AVR is being targeted</strong>. See <a href="./003.2-note-about-rust-build-std-flag.html">3.2. A note about the required Rust <code>-Z build-std=&lt;CRATE,&gt;</code> flag</a> for more details.</li>
 <li><code>--release</code>  is not strictly required - debug mode should be as correct as release mode - however, <strong>debug mode generates SLOW CODE, especially on AVR</strong>. Release mode is much better.</li>
 </ul>
 <p><strong>Example</strong>: An in-context example of compiling a crate is given for the LED blinking example in <a href="./003.2-example-building-blink.html">3.2. Example - Building the <code>blink</code> program for AVR</a>.</p>
@@ -299,7 +299,7 @@ The ELF file will be available at <code>target/&lt;TARGET NAME&gt;/release/&lt;C
 generates code for the AVR <a href="https://en.wikipedia.org/wiki/ATmega328">ATmega328</a> using the
 GNU AVR-GCC toolchain for linking support.</p>
 <h2><a class="header" href="#targeting-custom-microcontrollers-by-adapting-avr-unkonwn-gnu-atmega328" id="targeting-custom-microcontrollers-by-adapting-avr-unkonwn-gnu-atmega328">Targeting custom microcontrollers by adapting 'avr-unkonwn-gnu-atmega328'</a></h2>
-<p>See the section [./005.1-the-target-specification-json-file.md](5.1. The Target Specification JSON File) for
+<p>See the section <a href="./005.1-the-target-specification-json-file.html">5.1. The Target Specification JSON File</a> for
 more information about how Rust target specification JSON files work.</p>
 <p>To generate a Rust target specification JSON file from the builtin:</p>
 <pre><code class="language-bash">rustc --print target-spec-json -Z unstable-options --target avr-unknown-gnu-atmega328 &gt; my-custom-avr-unknown-gnu-atmega328.json
@@ -447,7 +447,7 @@ usual handling of the main function so that the main function is correctly picke
 a architecture-independent way to expose GPIO pins and peripherals that works
 across devices such as AVR and ARM.</p>
 <h2><a class="header" href="#step-n---more-documentation-is-on-its-way-in-the-meantime-a-hrefhttpsgithubcomavr-rustblinkavr-rustblinka-serves-as-a-reference-implementation" id="step-n---more-documentation-is-on-its-way-in-the-meantime-a-hrefhttpsgithubcomavr-rustblinkavr-rustblinka-serves-as-a-reference-implementation">Step N. - More documentation is on its way. In the meantime, <a href="https://github.com/avr-rust/blink/">avr-rust/blink</a> serves as a reference implementation</a></h2>
-<h1><a class="header" href="#52-the-target-specification-json-file" id="52-the-target-specification-json-file">5.2. The target specification JSON file</a></h1>
+<h1><a class="header" href="#51-the-target-specification-json-file" id="51-the-target-specification-json-file">5.1. The target specification JSON file</a></h1>
 <p>External resources:</p>
 <ul>
 <li><a href="https://docs.rust-embedded.org/embedonomicon/custom-target.html">The Embedonomicon on custom targets</a></li>
@@ -627,7 +627,7 @@ IO registers for any AVR device you wish to target.</p>
 the peripherals, but you will need to write to the expected IO registers manually.</p>
 <h3><a class="header" href="#others" id="others">Others?</a></h3>
 <p>Pull requests to <a href="https://github.com/avr-rust/book.avr-rust.com">github.com/avr-rust/book.avr-rust.com</a> welcome!</p>
-<h1><a class="header" href="#52-quick-start-from-template" id="52-quick-start-from-template">5.2. Quick start from template</a></h1>
+<h1><a class="header" href="#6-quick-start-from-template" id="6-quick-start-from-template">6. Quick start from template</a></h1>
 <h2><a class="header" href="#quick-start" id="quick-start">Quick start</a></h2>
 <p>The quickest way to get going is to clone</p>
 <pre><code class="language-bash"># Download and extract the template repository to the current directory.

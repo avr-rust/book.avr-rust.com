@@ -195,7 +195,7 @@ any time <code>cargo</code> is used within the directory tree of the crate.</p>
 The ELF file will be available at <code>target/&lt;TARGET NAME&gt;/release/&lt;CRATE NAME&gt;.elf</code>.</p>
 <p>Notes:</p>
 <ul>
-<li><strong><code>-Z build-std=core</code> is required whenever AVR is being targeted</strong>. See <a href="./003.1-note-about-rust-build-std-flag.html">3.1. A note about the required Rust <code>-Z build-std=&lt;CRATE,&gt;</code> flag</a> for more details.</li>
+<li><strong><code>-Z build-std=core</code> is required whenever AVR is being targeted</strong>. See <a href="./003.2-note-about-rust-build-std-flag.html">3.2. A note about the required Rust <code>-Z build-std=&lt;CRATE,&gt;</code> flag</a> for more details.</li>
 <li><code>--release</code>  is not strictly required - debug mode should be as correct as release mode - however, <strong>debug mode generates SLOW CODE, especially on AVR</strong>. Release mode is much better.</li>
 </ul>
 <p><strong>Example</strong>: An in-context example of compiling a crate is given for the LED blinking example in <a href="./003.2-example-building-blink.html">3.2. Example - Building the <code>blink</code> program for AVR</a>.</p>
