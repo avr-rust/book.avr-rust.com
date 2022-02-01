@@ -1,4 +1,4 @@
-# 5.1. Summary of Steps
+# 5. Summary of Steps
 
 ## Initial target-independent steps for creating a new crate
 

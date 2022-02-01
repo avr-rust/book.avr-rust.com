@@ -17,7 +17,7 @@ In summary, there are two options:
 
   * Use `rustc --target=avr-unknown-gnu-atmega328` to use the default, builtin GCC based target for ATmega328
   * Or use `rustc --target=my-custom-avr-target.json` with either a JSON file adapted from the builtin
-      `avr-unknown-gnu-atmega328` target above, or otherwise build the file manually you wish to avoiding the
+      `avr-unknown-gnu-atmega328` target above, or otherwise build the file you wish manually to avoid the
       default path entirely.
 
 ## Make sure you use the nightly version of Rust, not the default stable channel
@@ -43,7 +43,7 @@ Using a custom target specification JSON:
 cargo build -Z build-std=core --target /path/to/my-custom-avr-target.json --release
 ```
 
-Either or these generate an AVR ELF file that can be subsequently flashed to a real device or ran inside a simulator.
+Either of these generate an AVR ELF file that can be subsequently flashed to a real device or ran inside a simulator.
 The ELF file will be available at `target/<TARGET NAME>/release/<CRATE NAME>.elf`.
 
 Notes:
