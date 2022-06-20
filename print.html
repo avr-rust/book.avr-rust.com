@@ -271,19 +271,11 @@ any time <code>cargo</code> is used within the directory tree of the crate.</p>
 <h2><a class="header" href="#compiling-a-crate" id="compiling-a-crate">Compiling a crate</a></h2>
 <p>To compile and link an executable crate for AVR, run the following:</p>
 <p>Using the builtin <code>avr-unknown-gnu-atmega328</code> target:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>cargo build -Z build-std=core --target avr-unknown-gnu-atmega328 --release
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code class="language-bash">cargo build -Z build-std=core --target avr-unknown-gnu-atmega328 --release
+</code></pre>
 <p>Using a custom target specification JSON:</p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>cargo build -Z build-std=core --target /path/to/my-custom-avr-target.json --release
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code class="language-bash">cargo build -Z build-std=core --target /path/to/my-custom-avr-target.json --release
+</code></pre>
 <p>Either of these generate an AVR ELF file that can be subsequently flashed to a real device or ran inside a simulator.
 The ELF file will be available at <code>target/&lt;TARGET NAME&gt;/release/&lt;CRATE NAME&gt;.elf</code>.</p>
 <p>Notes:</p>
