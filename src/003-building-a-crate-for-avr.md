@@ -32,14 +32,14 @@ To compile and link an executable crate for AVR, run the following:
 
 Using the builtin `avr-unknown-gnu-atmega328` target:
 
-```rust
+```bash
 cargo build -Z build-std=core --target avr-unknown-gnu-atmega328 --release
 ```
 
 Using a custom target specification JSON:
 
 
-```rust
+```bash
 cargo build -Z build-std=core --target /path/to/my-custom-avr-target.json --release
 ```
 
