@@ -168,7 +168,7 @@ it to suit your needs.</p>
 <ul>
 <li>Use <code>rustc --target=avr-unknown-gnu-atmega328</code> to use the default, builtin GCC based target for ATmega328</li>
 <li>Or use <code>rustc --target=my-custom-avr-target.json</code> with either a JSON file adapted from the builtin
-<code>avr-unknown-gnu-atmega328</code> target above, or otherwise build the file manually you wish to avoiding the
+<code>avr-unknown-gnu-atmega328</code> target above, or otherwise build the file you wish manually to avoid the
 default path entirely.</li>
 </ul>
 <h2><a class="header" href="#make-sure-you-use-the-nightly-version-of-rust-not-the-default-stable-channel" id="make-sure-you-use-the-nightly-version-of-rust-not-the-default-stable-channel">Make sure you use the nightly version of Rust, not the default stable channel</a></h2>
@@ -191,7 +191,7 @@ any time <code>cargo</code> is used within the directory tree of the crate.</p>
 </span>cargo build -Z build-std=core --target /path/to/my-custom-avr-target.json --release
 <span class="boring">}
 </span></code></pre></pre>
-<p>Either or these generate an AVR ELF file that can be subsequently flashed to a real device or ran inside a simulator.
+<p>Either of these generate an AVR ELF file that can be subsequently flashed to a real device or ran inside a simulator.
 The ELF file will be available at <code>target/&lt;TARGET NAME&gt;/release/&lt;CRATE NAME&gt;.elf</code>.</p>
 <p>Notes:</p>
 <ul>
