@@ -10,7 +10,7 @@ Flashing a Rust ELF file is no different to flashing a regular AVR-GCC C/C++ gen
 
 ## Arduino Uno
 
-Connect your Arduino Uno to your computer, and use `avrdude` to flash your crate. The example below uses the output from [the `blink` example](./003.2-example-building-blink.md).
+Connect your Arduino Uno to your computer, and use `avrdude` to flash your crate. The example below uses the output from [the `blink` example](./003.3-example-building-blink.md).
 
 ```bash
 avrdude -patmega328p -carduino -P[PORT] -b115200 -D -Uflash:w:target/avr-atmega328p/release/blink.elf:e
