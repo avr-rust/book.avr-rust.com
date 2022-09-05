@@ -22,9 +22,9 @@ In summary, there are two options:
 
 ## Make sure you use the nightly version of Rust, not the default stable channel
 
-The best way to ensure a crate is using the Nightly compiler is to run `rustup override set nightly` inside a terminal
-within the root directory of the crate. After this is done, `cargo` will by-default use the AVR-enabled Nightly compiler
-any time `cargo` is used within the directory tree of the crate.
+The best way to ensure a crate is using the Nightly compiler is to add a `rust-toolchain` to the crate's root
+directory with contents `nightly`: `echo "nightly" > rust-toolchain`. After this is done, `cargo` will
+by-default use the AVR-enabled Nightly compiler any time `cargo` is used within the directory tree of the crate.
 
 ## Compiling a crate
 
