@@ -4,10 +4,10 @@ After setting up the compiler, you may use it to generate assembly or machine co
 
 ## Choosing a `--target`
 
-The Rust nightly compiler includes a built-in target for ATmega328 named `avr-unknown-gnu-atmega328`
+The Rust nightly compiler includes a built-in target for ATmega328 named `avr-unknown-gnu-atmega328`.
 
 If you wish to target a microcontroller other than ATmega328, or you want to change any of the
-default builtin options like the linking parameters, then you will need to export the builtin
+default built-in options like the linking parameters, then you will need to export the built-in
 `avr-unknown-gnu-atmega328` target to a custom target specification JSON file and modify
 it to suit your needs.
 
@@ -15,29 +15,29 @@ This target can be adapted to other microcontrollers as per the instructions in 
 
 In summary, there are two options:
 
-  * Use `rustc --target=avr-unknown-gnu-atmega328` to use the default, builtin GCC based target for ATmega328
-  * Or use `rustc --target=my-custom-avr-target.json` with either a JSON file adapted from the builtin
+  * Use `rustc --target=avr-unknown-gnu-atmega328` to use the default, built-in GCC based target for ATmega328
+  * Or use `rustc --target=my-custom-avr-target.json` with either a JSON file adapted from the built-in
       `avr-unknown-gnu-atmega328` target above, or otherwise build the file you wish manually to avoid the
       default path entirely.
 
-## Make sure you use the nightly version of Rust, not the default stable channel
+## Using the right Rust compiler
 
-The best way to ensure a crate is using the Nightly compiler is to run `rustup override set nightly` inside a terminal
-within the root directory of the crate. After this is done, `cargo` will by-default use the AVR-enabled Nightly compiler
+Make sure you use the `nightly` version of Rust, not the default stable channel.
+The best way to ensure a crate is using the `nightly` compiler is to run `rustup override set nightly` inside a terminal
+within the root directory of the crate. After this is done, `cargo` will by default use the AVR-enabled Nightly compiler
 any time `cargo` is used within the directory tree of the crate.
 
 ## Compiling a crate
 
-To compile and link an executable crate for AVR, run the following:
+Depending on the option you selected from above, you can compile and link the executable crate for AVR with either of the commands below.
 
-Using the builtin `avr-unknown-gnu-atmega328` target:
+If you used the builtin `avr-unknown-gnu-atmega328` target, run:
 
 ```bash
 cargo build -Z build-std=core --target avr-unknown-gnu-atmega328 --release
 ```
 
-Using a custom target specification JSON:
-
+If you used a custom target specification JSON, run:
 
 ```bash
 cargo build -Z build-std=core --target /path/to/my-custom-avr-target.json --release
