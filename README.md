@@ -8,11 +8,11 @@ Hosted on [book.avr-rust.org/](https://book.avr-rust.org/).
 
 ## Build dependencies
 
-Install `mdbook`:
+Install mdBook:
 
-If rust and cargo are installed, you can build mdbook from source and install using `cargo install mdbook`.
+If rust and cargo are installed, you can build mdBook from source and install using `cargo install mdbook`.
 
-mdbook's documentation also details [all mdbook installation methods](https://rust-lang.github.io/mdBook/guide/installation.html).
+mdBook's documentation also details [all mdBook installation methods](https://rust-lang.github.io/mdBook/guide/installation.html).
 
 ## Building the AVR documentation book
 
