@@ -4,11 +4,19 @@
 
 A guidebook for AVR-Rust development.
 
-Hosted on [book.avr-rust.com/](https://book.avr-rust.com/).
+Hosted on [book.avr-rust.org/](https://book.avr-rust.org/).
 
-## Building the book
+## Build dependencies
 
-Install `mdbook`. Yes, you can get it through `cargo install`.
+Install `mdbook`:
 
-Then run `mdbook build`.
+If rust and cargo are installed, you can build mdbook from source and install using `cargo install mdbook`.
+
+mdbook's documentation also details [all mdbook installation methods](https://rust-lang.github.io/mdBook/guide/installation.html).
+
+## Building the AVR documentation book
+
+Run `mdbook build`.
+
+By default the book is output to the `book` directory and the HTML index is output to `book/index.html`.
 
